@@ -1,0 +1,32 @@
+#include <VirtualWire.h>
+int controlpin = 7;
+char *controller;
+void setup() 
+{
+pinMode(controlpin, INPUT);
+pinMode(13,OUTPUT);
+vw_set_ptt_inverted(true); //
+vw_set_tx_pin(12);
+vw_setup(4000);// speed of data transfer Kbps
+}
+
+void loop()
+{
+int control = digitalRead(controlpin);
+if(control == HIGH)
+{
+controller="1"  ;
+vw_send((uint8_t *)controller, strlen(controller));
+vw_wait_tx(); // Wait until the whole message is gone
+digitalWrite(13,1);
+delay(2000);
+}
+if(control == LOW)
+{
+controller="0"  ;
+vw_send((uint8_t *)controller, strlen(controller));
+vw_wait_tx(); // Wait until the whole message is gone
+digitalWrite(13,0);
+delay(2000);
+}
+}
