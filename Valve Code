@@ -1,0 +1,52 @@
+#include<Servo.h>
+Servo valve;
+int control = 12;
+int pos = 90;
+void setup()
+{
+
+  pinMode(control, INPUT);
+  valve.attach(13);
+
+  // make sure we start a 0 degrees. 
+  // No way to guarantee slow motion because
+  // the servo cannot tell us it's initial position reliably.
+  valve.write(pos); 
+}
+
+int controlCur = HIGH;
+int controlPrev;
+
+int mode = 2; // default mode for unpressed button
+int slowdown = 15; // (ms) how long to wait between valve positions 
+
+void loop()
+{
+  //update the button state
+  controlPrev = controlCur;
+  controlCur = digitalRead(control);
+
+  if (controlCur < controlPrev) // if the button went low (got pressed)
+  {
+    mode = 1; // this is goto 90 degrees mode
+  }
+  if (controlCur > controlPrev) // if the button went high (did not get pressed)
+  {
+    mode = 2; // this is goto 0 degrees mode
+  }
+
+  if (mode == 1 && pos < 180) // Mode 1 tries to get to 90 degrees
+  {
+    pos++;
+    valve.write(pos);
+    delay(slowdown);
+  }
+
+  if (mode == 2 && pos > 90) //Mode 2 to tries to get to 0 degrees
+  {
+    pos--;
+    valve.write(pos);
+    delay(slowdown);
+  }
+  
+}
