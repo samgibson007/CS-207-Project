@@ -1,3 +1,14 @@
+/* 
+Author:         Sam Gibson
+Institution:    University of regina-Engineering Department
+Orginal Source: http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/
+Details:        This is one of three code segments that controls the water dispersal system. This 
+                was designed for CS 207 (building interactive gadgets, Instructed at the university 
+                of Regina bY Trevor Tomesh.
+
+
+
+
 #include <VirtualWire.h>
 int controlpin = 7;
 char *controller;
