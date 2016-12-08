@@ -1,7 +1,7 @@
 /* 
 Author:         Sam Gibson
 Institution:    University of regina-Engineering Department
-Orginal Source: http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/
+Orginal Source: Alex Clarke, Instructor of the CS 207 lab section aided in the design of this code
 Details:        This is one of three code segments that controls the water dispersal system. This 
                 was designed for CS 207 (building interactive gadgets, Instructed at the university 
                 of Regina bY Trevor Tomesh.
